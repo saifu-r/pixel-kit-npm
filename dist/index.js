@@ -14,4 +14,9 @@ class PkIcons extends HTMLElement {
   }
 }
 
-customElements.define('pkicons', PkIcons);
+// ✅ SAFE REGISTRATION (important)
+if (typeof window !== 'undefined' && window.customElements) {
+  if (!customElements.get('pk-icon')) {
+    customElements.define('pk-icon', PkIcon);
+  }
+}

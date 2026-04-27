@@ -1,21 +1,18 @@
 # pkicon
 
-Lightweight SVG icon library using Web Components.
-Use icons in your HTML with a simple custom tag.
+A lightweight Web Components icon library. Drop SVG icons into any HTML page with a single custom tag — no frameworks, no build steps, no external requests.
 
 ---
 
-## ✨ Features
+## Features
 
-* ⚡ Simple and clean syntax
-* 🎨 Inline SVG (no external requests)
-* 🚀 Lightweight & fast
-* 🔌 Framework agnostic (Angular, React, Vue, plain HTML)
-* 🧩 Easily extendable
+- Inline SVG rendering — icons live in your DOM, not behind a network call
+- Works anywhere — plain HTML, React, Vue, Angular, or whatever you're building with
+- Zero dependencies
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 npm install pkicon
@@ -23,9 +20,9 @@ npm install pkicon
 
 ---
 
-## 🚀 Usage
+## Usage
 
-### 1. Import the package
+Import once, use anywhere:
 
 ```html
 <script type="module">
@@ -33,9 +30,7 @@ npm install pkicon
 </script>
 ```
 
----
-
-### 2. Use in HTML
+Then drop icons into your markup:
 
 ```html
 <pk-icon name="cross"></pk-icon>
@@ -44,92 +39,44 @@ npm install pkicon
 
 ---
 
-## 🎯 Available Icons
+## Available Icons
 
-| Name  | Description         |
-| ----- | ------------------- |
-| cross | Close / cancel icon |
-| check | Success / tick icon |
-
----
-
-## ⚙️ Attributes
-
-| Attribute | Type   | Description |
-| --------- | ------ | ----------- |
-| name      | string | Icon name   |
+| Name    | Description       |
+|---------|-------------------|
+| `cross` | Close / cancel    |
+| `check` | Success / confirm |
 
 ---
 
-### Example
+## Attributes
 
-```html
-<pk-icon name="cross"></pk-icon>
-```
-
----
-
-## 🧠 How It Works
-
-`pkicon` uses the Web Components API to define a custom HTML element.
-
-When you write:
-
-```html
-<pk-icon name="cross"></pk-icon>
-```
-
-It dynamically injects the SVG into the DOM.
+| Attribute | Type     | Description                |
+|-----------|----------|----------------------------|
+| `name`    | `string` | Name of the icon to render |
 
 ---
 
-## 📁 Project Structure
+## Requirements
 
-```
-pkicon/
-├── dist/
-│   └── index.js
-├── package.json
-└── README.md
-```
+Works in all modern browsers. Always provide the `name` attribute — without it, nothing renders.
 
 ---
 
-## 🛠️ Adding New Icons
+## Roadmap
 
-Edit your icon map:
-
-```js
-const icons = {
-  cross: `<svg>...</svg>`,
-  check: `<svg>...</svg>`
-};
-```
+- Size and color props
+- CDN distribution
+- Icon preview site
+- Angular and React wrapper packages
 
 ---
 
-## ⚠️ Notes
+## License
 
-* Always use the `name` attribute
-* Works in modern browsers (Web Components support required)
-
----
-
-## 🔮 Roadmap
-
-* 🎨 Size & color support
-* 🌐 CDN delivery
-* 🔍 Icon preview website
-* ⚙️ Angular / React wrappers
+MIT
 
 ---
 
-## 📄 License
-
-MIT License
-
----
-
-## 👨‍💻 Author
+## Author
 
 **saifu-r**
