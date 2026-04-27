@@ -4,15 +4,17 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "type": "module",
-  "files": [
-    "dist"
-  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "rollup src/index.js --file dist/index.js --format es"
+  },
+  "devDependencies": {},
   "author": "saifu-r",
   "description": "Lightweight SVG icon web component",
-  "keywords": [
-    "icons",
-    "svg",
-    "web-component",
-    "icon-library"
-  ]
+  "keywords": ["icons", "svg", "web-component", "icon-library"]
 }
