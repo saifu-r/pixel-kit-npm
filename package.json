@@ -1,9 +1,14 @@
 {
   "name": "pkicon",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "type": "module",
   "author": "saifu-r",
   "description": "Lightweight SVG icon web component",
-  "keywords": ["icons", "svg", "web-component", "icon-library"]
+  "keywords": [
+    "icons",
+    "svg",
+    "web-component",
+    "icon-library"
+  ]
 }
