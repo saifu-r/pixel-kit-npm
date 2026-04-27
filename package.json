@@ -1,6 +1,6 @@
 {
   "name": "pkicon",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "type": "module",
@@ -9,12 +9,19 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup src/index.js --file dist/index.js --format es"
   },
   "devDependencies": {},
   "author": "saifu-r",
   "description": "Lightweight SVG icon web component",
-  "keywords": ["icons", "svg", "web-component", "icon-library"]
+  "keywords": [
+    "icons",
+    "svg",
+    "web-component",
+    "icon-library"
+  ]
 }
