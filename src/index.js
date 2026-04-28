@@ -220,13 +220,20 @@ const icons = {
   'align-right': `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>`,
 };
 
-export default icons;F
+export default icons;
 
 class PkIcon extends HTMLElement {
   connectedCallback() {
     const name = this.getAttribute('name');
     const size = this.getAttribute('size') || '24';
     const color = this.getAttribute('color') || 'currentColor';
+    const strokeWidth = this.getAttribute('stroke-width') || '2';
+    const fill = this.getAttribute('fill') === 'true' ? color : 'none';
+    const strokeLinecap = this.getAttribute('stroke-linecap') || 'round';
+    const strokeLinejoin = this.getAttribute('stroke-linejoin') || 'round';
+    const opacity = this.getAttribute('opacity') || '1';
+    const rotate = this.getAttribute('rotate') || '0';
+    const flip = this.getAttribute('flip');
 
     const svgString = icons[name];
     if (!svgString) return;
@@ -238,7 +245,17 @@ class PkIcon extends HTMLElement {
     svg.setAttribute('width', size);
     svg.setAttribute('height', size);
     svg.setAttribute('stroke', color);
-    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-width', strokeWidth);
+    svg.setAttribute('fill', fill);
+    svg.setAttribute('stroke-linecap', strokeLinecap);
+    svg.setAttribute('stroke-linejoin', strokeLinejoin);
+    svg.setAttribute('opacity', opacity);
+
+    let transform = `rotate(${rotate}deg)`;
+    if (flip === 'horizontal') transform += ' scaleX(-1)';
+    if (flip === 'vertical') transform += ' scaleY(-1)';
+    svg.style.transform = transform;
+    svg.style.display = 'block';
 
     this.innerHTML = svg.outerHTML;
   }

@@ -8,6 +8,8 @@ A lightweight Web Components icon library. Drop SVG icons into any HTML page wit
 
 - Inline SVG rendering — icons live in your DOM, not behind a network call
 - Works anywhere — plain HTML, React, Vue, Angular, or whatever you're building with
+- 200+ icons out of the box
+- Fully customizable via attributes
 - Zero dependencies
 
 ---
@@ -16,6 +18,12 @@ A lightweight Web Components icon library. Drop SVG icons into any HTML page wit
 
 ```bash
 npm install pkicon
+```
+
+## CDN
+
+```html
+<script type="module" src="https://cdn.jsdelivr.net/npm/pkicon/dist/index.js"></script>
 ```
 
 ---
@@ -39,20 +47,58 @@ Then drop icons into your markup:
 
 ---
 
-## Available Icons
+## Attributes
 
-| Name    | Description       |
-|---------|-------------------|
-| `cross` | Close / cancel    |
-| `check` | Success / confirm |
+| Attribute        | Type                              | Default        | Description                        |
+|------------------|-----------------------------------|----------------|------------------------------------|
+| `name`           | `string`                          | —              | Icon name (required)               |
+| `size`           | `number`                          | `24`           | Width and height in pixels         |
+| `color`          | `string` (keyword or hex)         | `currentColor` | Stroke color                       |
+| `fill`           | `boolean` (`true` / `false`)      | `false`        | Fill the icon with the stroke color|
+| `stroke-width`   | `number`                          | `2`            | Stroke thickness in pixels         |
+| `stroke-linecap` | `round` / `square` / `butt`       | `round`        | Shape of line endings              |
+| `stroke-linejoin`| `round` / `miter` / `bevel`       | `round`        | Shape of line corners              |
+| `opacity`        | `number` (0 to 1)                 | `1`            | Icon transparency                  |
+| `rotate`         | `number` (degrees)                | `0`            | Rotation angle                     |
+| `flip`           | `horizontal` / `vertical`         | —              | Mirror the icon                    |
 
 ---
 
-## Attributes
+## Examples
 
-| Attribute | Type     | Description                |
-|-----------|----------|----------------------------|
-| `name`    | `string` | Name of the icon to render |
+```html
+<!-- Basic -->
+<pk-icon name="check"></pk-icon>
+
+<!-- Size and color -->
+<pk-icon name="heart" size="32" color="red"></pk-icon>
+
+<!-- Filled icon -->
+<pk-icon name="star" color="gold" fill="true"></pk-icon>
+
+<!-- Custom stroke -->
+<pk-icon name="circle" stroke-width="1" stroke-linecap="square"></pk-icon>
+
+<!-- Opacity -->
+<pk-icon name="bell" opacity="0.5"></pk-icon>
+
+<!-- Rotate -->
+<pk-icon name="arrow-up" rotate="90"></pk-icon>
+
+<!-- Flip -->
+<pk-icon name="arrow-right" flip="horizontal"></pk-icon>
+
+<!-- Combined -->
+<pk-icon name="star" color="gold" fill="true" size="48" opacity="0.8" rotate="45"></pk-icon>
+```
+
+---
+
+## Available Icons
+
+200+ icons across 15 categories — arrows, navigation, communication, files, media, user, security, alerts, actions, tools, commerce, weather, travel, and more.
+
+Full icon list: [pkicon icons](https://www.npmjs.com/package/pkicon)
 
 ---
 
@@ -64,8 +110,8 @@ Works in all modern browsers. Always provide the `name` attribute — without it
 
 ## Roadmap
 
-- Size and color props
-- CDN distribution
+- ~~Size and color props~~ ✓
+- ~~CDN distribution~~ ✓
 - Icon preview site
 - Angular and React wrapper packages
 
