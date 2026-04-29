@@ -225,6 +225,11 @@ class PkIcon extends HTMLElement {
     const name = this.getAttribute('name');
     const size = this.getAttribute('size') || '24';
     const color = this.getAttribute('color') || 'currentColor';
+    const strokeWidth = this.getAttribute('stroke-width') || '2';
+    const fill = this.getAttribute('fill') === 'true' ? color : 'none';
+    const strokeLinecap = this.getAttribute('stroke-linecap') || 'round';
+    const strokeLinejoin = this.getAttribute('stroke-linejoin') || 'round';
+    const opacity = this.getAttribute('opacity') || '1';
 
     const svgString = icons[name];
     if (!svgString) return;
@@ -236,7 +241,11 @@ class PkIcon extends HTMLElement {
     svg.setAttribute('width', size);
     svg.setAttribute('height', size);
     svg.setAttribute('stroke', color);
-    svg.setAttribute('stroke-width', '2');
+    svg.setAttribute('stroke-width', strokeWidth);
+    svg.setAttribute('fill', fill);
+    svg.setAttribute('stroke-linecap', strokeLinecap);
+    svg.setAttribute('stroke-linejoin', strokeLinejoin);
+    svg.setAttribute('opacity', opacity);
 
     this.innerHTML = svg.outerHTML;
   }
