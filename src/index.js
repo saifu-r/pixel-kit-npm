@@ -1,5 +1,4 @@
 const icons = {
-
   // ─── Arrows ───────────────────────────────────────────────
   arrowUp: `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>`,
   arrowDown: `<svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>`,
@@ -222,37 +221,45 @@ const icons = {
 
 class PkIcon extends HTMLElement {
   connectedCallback() {
-    const name = this.getAttribute('name');
-    const size = this.getAttribute('size') || '24';
-    const color = this.getAttribute('color') || 'currentColor';
-    const strokeWidth = this.getAttribute('stroke-width') || '2';
-    const fill = this.getAttribute('fill') === 'true' ? color : 'none';
-    const strokeLinecap = this.getAttribute('stroke-linecap') || 'round';
-    const strokeLinejoin = this.getAttribute('stroke-linejoin') || 'round';
-    const opacity = this.getAttribute('opacity') || '1';
+    const name = this.getAttribute("name");
+    const size = this.getAttribute("size") || "24";
+    const color = this.getAttribute("color") || "currentColor";
+    const strokeWidth = this.getAttribute("stroke-width") || "2";
+    const fill = this.getAttribute("fill") === "true" ? color : "none";
+    const strokeLinecap = this.getAttribute("stroke-linecap") || "round";
+    const strokeLinejoin = this.getAttribute("stroke-linejoin") || "round";
+    const opacity = this.getAttribute("opacity") || "1";
+    const rotate = this.getAttribute("rotate") || "0";
+    const flip = this.getAttribute("flip");
 
     const svgString = icons[name];
     if (!svgString) return;
 
     const parser = new DOMParser();
-    const doc = parser.parseFromString(svgString, 'image/svg+xml');
-    const svg = doc.querySelector('svg');
+    const doc = parser.parseFromString(svgString, "image/svg+xml");
+    const svg = doc.querySelector("svg");
 
-    svg.setAttribute('width', size);
-    svg.setAttribute('height', size);
-    svg.setAttribute('stroke', color);
-    svg.setAttribute('stroke-width', strokeWidth);
-    svg.setAttribute('fill', fill);
-    svg.setAttribute('stroke-linecap', strokeLinecap);
-    svg.setAttribute('stroke-linejoin', strokeLinejoin);
-    svg.setAttribute('opacity', opacity);
+    svg.setAttribute("width", size);
+    svg.setAttribute("height", size);
+    svg.setAttribute("stroke", color);
+    svg.setAttribute("stroke-width", strokeWidth);
+    svg.setAttribute("fill", fill);
+    svg.setAttribute("stroke-linecap", strokeLinecap);
+    svg.setAttribute("stroke-linejoin", strokeLinejoin);
+    svg.setAttribute("opacity", opacity);
+
+    let transform = `rotate(${rotate}deg)`;
+    if (flip === "horizontal") transform += " scaleX(-1)";
+    if (flip === "vertical") transform += " scaleY(-1)";
+    svg.style.transform = transform;
+    svg.style.display = "block";
 
     this.innerHTML = svg.outerHTML;
   }
 }
 
-if (typeof window !== 'undefined' && window.customElements) {
-  if (!customElements.get('pk-icon')) {
-    customElements.define('pk-icon', PkIcon);
+if (typeof window !== "undefined" && window.customElements) {
+  if (!customElements.get("pk-icon")) {
+    customElements.define("pk-icon", PkIcon);
   }
 }
