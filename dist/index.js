@@ -222,15 +222,27 @@ const icons = {
 class PkIcon extends HTMLElement {
   connectedCallback() {
     const name = this.getAttribute("name");
-    const size = this.getAttribute("size") || "24";
+    const size = parseFloat(this.getAttribute("size")) || 24;
     const color = this.getAttribute("color") || "currentColor";
-    const strokeWidth = this.getAttribute("stroke-width") || "2";
+
+    // ✅ stroke-width with clamp (1 → 7)
+    let strokeWidth = parseFloat(this.getAttribute("stroke-width"));
+    if (isNaN(strokeWidth)) strokeWidth = 2;
+    strokeWidth = Math.round(Math.min(7, Math.max(1, strokeWidth)));
+
     const fill = this.getAttribute("fill") === "true" ? color : "none";
     const strokeLinecap = this.getAttribute("stroke-linecap") || "round";
     const strokeLinejoin = this.getAttribute("stroke-linejoin") || "round";
-    const opacity = this.getAttribute("opacity") || "1";
-    const rotate = this.getAttribute("rotate") || "0";
-    const flip = this.getAttribute("flip");
+
+    // ✅ opacity safe range (0 → 1)
+    let opacity = parseFloat(this.getAttribute("opacity"));
+    if (isNaN(opacity)) opacity = 1;
+    opacity = Math.min(1, Math.max(0, opacity));
+
+    // ✅ rotate safe parse
+    const rotate = parseFloat(this.getAttribute("rotate")) || 0;
+
+    const flip = this.getAttribute("flip"); // "horizontal" | "vertical"
 
     const svgString = icons[name];
     if (!svgString) return;
@@ -239,6 +251,9 @@ class PkIcon extends HTMLElement {
     const doc = parser.parseFromString(svgString, "image/svg+xml");
     const svg = doc.querySelector("svg");
 
+    if (!svg) return;
+
+    // Apply base attributes
     svg.setAttribute("width", size);
     svg.setAttribute("height", size);
     svg.setAttribute("stroke", color);
@@ -248,16 +263,45 @@ class PkIcon extends HTMLElement {
     svg.setAttribute("stroke-linejoin", strokeLinejoin);
     svg.setAttribute("opacity", opacity);
 
-    let transform = `rotate(${rotate}deg)`;
-    if (flip === "horizontal") transform += " scaleX(-1)";
-    if (flip === "vertical") transform += " scaleY(-1)";
-    svg.style.transform = transform;
+    // ✅ Create transform wrapper
+    const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+
+    let transform = "";
+
+    // Rotate around center
+    if (rotate !== 0) {
+      const center = size / 2;
+      transform += `rotate(${rotate} ${center} ${center}) `;
+    }
+
+    // Flip handling (keep position correct)
+    if (flip === "horizontal") {
+      transform += `scale(-1,1) translate(-${size},0) `;
+    }
+
+    if (flip === "vertical") {
+      transform += `scale(1,-1) translate(0,-${size}) `;
+    }
+
+    // Apply transform if needed
+    if (transform) {
+      g.setAttribute("transform", transform.trim());
+
+      // Move all children into <g>
+      while (svg.firstChild) {
+        g.appendChild(svg.firstChild);
+      }
+
+      svg.appendChild(g);
+    }
+
     svg.style.display = "block";
 
-    this.innerHTML = svg.outerHTML;
+    // Clear and append safely
+    this.innerHTML = "";
+    this.appendChild(svg);
   }
 }
-
 if (typeof window !== "undefined" && window.customElements) {
   if (!customElements.get("pk-icon")) {
     customElements.define("pk-icon", PkIcon);
