@@ -47,3 +47,4 @@ if (typeof window !== "undefined" && window.customElements) {
     customElements.define("pk-icon", PkIcon);
   }
 }
+
