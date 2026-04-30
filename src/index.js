@@ -1,9 +1,9 @@
 
 // 1. IMPORT for use inside this file (for the web component)
-import { icons } from '../icons/index.js';
+import { icons } from './icons/index.js';
 
 // 2. EXPORT so npm users can access icons and categories
-export { icons, categories } from '../icons/index.js';
+export { icons, categories } from './icons/index.js';
 
 class PkIcon extends HTMLElement {
   connectedCallback() {
