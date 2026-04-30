@@ -220,7 +220,7 @@
 // };
 
 // index.js  ← what npm users import
-export { icons, categories } from '../icons/index.js';
+export { icons, categories } from './icons/index.js';
 
 class PkIcon extends HTMLElement {
   connectedCallback() {
