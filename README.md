@@ -59,8 +59,7 @@ Then drop icons into your markup:
 | `stroke-linecap` | `round` / `square` / `butt`       | `round`        | Shape of line endings              |
 | `stroke-linejoin`| `round` / `miter` / `bevel`       | `round`        | Shape of line corners              |
 | `opacity`        | `number` (0 to 1)                 | `1`            | Icon transparency                  |
-| `rotate`         | `number` (degrees)                | `0`            | Rotation angle                     |
-| `flip`           | `horizontal` / `vertical`         | —              | Mirror the icon                    |
+
 
 ---
 
@@ -82,21 +81,15 @@ Then drop icons into your markup:
 <!-- Opacity -->
 <pk-icon name="bell" opacity="0.5"></pk-icon>
 
-<!-- Rotate -->
-<pk-icon name="arrow-up" rotate="90"></pk-icon>
-
-<!-- Flip -->
-<pk-icon name="arrow-right" flip="horizontal"></pk-icon>
-
 <!-- Combined -->
-<pk-icon name="star" color="gold" fill="true" size="48" opacity="0.8" rotate="45"></pk-icon>
+<pk-icon name="star" color="gold" fill="true" size="48" opacity="0.8"></pk-icon>
 ```
 
 ---
 
 ## Available Icons
 
-200+ icons across 15 categories — arrows, navigation, communication, files, media, user, security, alerts, actions, tools, commerce, weather, travel, and more.
+500+ icons across 15 categories — arrows, navigation, communication, files, media, user, security, alerts, actions, tools, commerce, weather, travel, and more.
 
 Full icon list: [pkicon icons](https://www.npmjs.com/package/pkicon)
 
@@ -114,6 +107,7 @@ Works in all modern browsers. Always provide the `name` attribute — without it
 - ~~CDN distribution~~ ✓
 - Icon preview site
 - Angular and React wrapper packages
+- Icon rotation and flip attributes
 
 ---
 
