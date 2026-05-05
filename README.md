@@ -113,7 +113,7 @@ Works in all modern browsers. Always provide the `name` attribute — without it
 
 ## License
 
-MIT
+MIT © 2026 Saifu-r
 
 ---
 

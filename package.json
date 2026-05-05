@@ -23,5 +23,7 @@
     "svg",
     "web-component",
     "icon-library"
-  ]
+  ],
+  "license": "MIT"
+
 }
