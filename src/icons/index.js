@@ -51,3 +51,11 @@ export const categories = {
   'Travel & Transport': travelTransport,
   'User & Social': userSocial,
 };
+
+
+// next update icons
+// Finance & Banking — every SaaS needs
+// Text & Typography — every editor needs
+// Development & Code — your users = devs
+// Calendar & Time — gap in current list
+// Health & Medical — massive market
